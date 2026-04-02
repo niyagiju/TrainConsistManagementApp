@@ -1,27 +1,44 @@
 import java.util.*;
 
+class Bogie {
+    String name;
+    int capacity;
+
+    Bogie(String name, int capacity) {
+        this.name = name;
+        this.capacity = capacity;
+    }
+
+    void display() {
+        System.out.println(name + " -> " + capacity + " seats");
+    }
+}
+
 public class TrainApp {
 
     public static void main(String[] args) {
 
-        System.out.println("=== Train Consist Management App (UC6) ===");
+        System.out.println("=== Train Consist Management App (UC7) ===");
 
-        // Create HashMap for bogie → capacity
-        HashMap<String, Integer> bogieCapacity = new HashMap<>();
+        // Create List of Bogie objects
+        List<Bogie> bogies = new ArrayList<>();
 
-        // ---------- INSERT DATA ----------
-        bogieCapacity.put("Sleeper", 72);
-        bogieCapacity.put("AC Chair", 60);
-        bogieCapacity.put("First Class", 40);
+        // ---------- ADD BOGIES ----------
+        bogies.add(new Bogie("Sleeper", 72));
+        bogies.add(new Bogie("AC Chair", 60));
+        bogies.add(new Bogie("First Class", 40));
 
-        // ---------- DISPLAY DATA ----------
-        System.out.println("\nBogie Capacity Details:");
-
-        for (Map.Entry<String, Integer> entry : bogieCapacity.entrySet()) {
-            System.out.println(entry.getKey() + " -> " + entry.getValue() + " seats");
+        System.out.println("\nBefore Sorting:");
+        for (Bogie b : bogies) {
+            b.display();
         }
 
-        // ---------- FAST LOOKUP ----------
-        System.out.println("\nCapacity of Sleeper: " + bogieCapacity.get("Sleeper"));
+        // ---------- SORT USING COMPARATOR (BY CAPACITY) ----------
+        bogies.sort(Comparator.comparingInt(b -> b.capacity));
+
+        System.out.println("\nAfter Sorting (By Capacity Ascending):");
+        for (Bogie b : bogies) {
+            b.display();
+        }
     }
 }
