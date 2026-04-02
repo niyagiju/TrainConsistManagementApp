@@ -4,13 +4,34 @@ public class TrainApp {
 
     public static void main(String[] args) {
 
-        // Welcome Message
         System.out.println("=== Train Consist Management App ===");
 
-        // Initialize empty ArrayList for bogies
+        // Create ArrayList for passenger bogies
         ArrayList<String> train = new ArrayList<>();
 
-        // Display initial bogie count
-        System.out.println("Initial Bogie Count: " + train.size());
+        // ---------- ADD BOGIES ----------
+        train.add("Sleeper");
+        train.add("AC Chair");
+        train.add("First Class");
+
+        System.out.println("\nAfter Adding Bogies:");
+        System.out.println(train);
+
+        // ---------- REMOVE BOGIE ----------
+        train.remove("AC Chair");
+
+        System.out.println("\nAfter Removing 'AC Chair':");
+        System.out.println(train);
+
+        // ---------- CHECK EXISTENCE ----------
+        if(train.contains("Sleeper")) {
+            System.out.println("\n'Sleeper' bogie exists in the train.");
+        } else {
+            System.out.println("\n'Sleeper' bogie not found.");
+        }
+
+        // ---------- FINAL STATE ----------
+        System.out.println("\nFinal Train Bogies:");
+        System.out.println(train);
     }
 }
