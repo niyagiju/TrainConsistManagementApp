@@ -4,25 +4,24 @@ public class TrainApp {
 
     public static void main(String[] args) {
 
-        System.out.println("=== Train Consist Management App (UC5) ===");
+        System.out.println("=== Train Consist Management App (UC6) ===");
 
-        // Create LinkedHashSet for ordered & unique bogies
-        LinkedHashSet<String> train = new LinkedHashSet<>();
+        // Create HashMap for bogie → capacity
+        HashMap<String, Integer> bogieCapacity = new HashMap<>();
 
-        // ---------- ADD BOGIES ----------
-        train.add("Engine");
-        train.add("Sleeper");
-        train.add("Cargo");
-        train.add("Guard");
+        // ---------- INSERT DATA ----------
+        bogieCapacity.put("Sleeper", 72);
+        bogieCapacity.put("AC Chair", 60);
+        bogieCapacity.put("First Class", 40);
 
-        // ---------- ADD DUPLICATE ----------
-        train.add("Sleeper"); // duplicate (ignored automatically)
+        // ---------- DISPLAY DATA ----------
+        System.out.println("\nBogie Capacity Details:");
 
-        // ---------- DISPLAY FORMATION ----------
-        System.out.println("\nTrain Formation (Insertion Order Preserved):");
-        System.out.println(train);
+        for (Map.Entry<String, Integer> entry : bogieCapacity.entrySet()) {
+            System.out.println(entry.getKey() + " -> " + entry.getValue() + " seats");
+        }
 
-        // ---------- SIZE ----------
-        System.out.println("\nTotal Bogies: " + train.size());
+        // ---------- FAST LOOKUP ----------
+        System.out.println("\nCapacity of Sleeper: " + bogieCapacity.get("Sleeper"));
     }
 }
