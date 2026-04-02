@@ -4,23 +4,33 @@ public class TrainApp {
 
     public static void main(String[] args) {
 
-        System.out.println("=== Train Consist Management App (UC3) ===");
+        System.out.println("=== Train Consist Management App (UC4) ===");
 
-        // Create HashSet for unique bogie IDs
-        HashSet<String> bogieIds = new HashSet<>();
+        // Create LinkedList for train consist
+        LinkedList<String> train = new LinkedList<>();
 
-        // ---------- ADD BOGIE IDs (including duplicates) ----------
-        bogieIds.add("BG101");
-        bogieIds.add("BG102");
-        bogieIds.add("BG103");
-        bogieIds.add("BG101"); // duplicate
-        bogieIds.add("BG102"); // duplicate
+        // ---------- ADD BOGIES ----------
+        train.add("Engine");
+        train.add("Sleeper");
+        train.add("AC");
+        train.add("Cargo");
+        train.add("Guard");
 
-        // ---------- DISPLAY FINAL SET ----------
-        System.out.println("\nUnique Bogie IDs:");
-        System.out.println(bogieIds);
+        System.out.println("\nInitial Train Consist:");
+        System.out.println(train);
 
-        // ---------- SIZE ----------
-        System.out.println("\nTotal Unique Bogies: " + bogieIds.size());
+        // ---------- INSERT AT POSITION ----------
+        train.add(2, "Pantry Car"); // index starts from 0
+
+        System.out.println("\nAfter Inserting Pantry Car at position 2:");
+        System.out.println(train);
+
+        // ---------- REMOVE FIRST & LAST ----------
+        train.removeFirst();
+        train.removeLast();
+
+        // ---------- FINAL STATE ----------
+        System.out.println("\nFinal Train Consist:");
+        System.out.println(train);
     }
 }
