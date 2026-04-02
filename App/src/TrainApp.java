@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.stream.*;
 
 class Bogie {
     String name;
@@ -18,25 +19,34 @@ public class TrainApp {
 
     public static void main(String[] args) {
 
-        System.out.println("=== Train Consist Management App (UC7) ===");
+        System.out.println("=== Train Consist Management App (UC8) ===");
 
-        // Create List of Bogie objects
+        // ---------- ORIGINAL LIST ----------
         List<Bogie> bogies = new ArrayList<>();
 
-        // ---------- ADD BOGIES ----------
         bogies.add(new Bogie("Sleeper", 72));
         bogies.add(new Bogie("AC Chair", 60));
         bogies.add(new Bogie("First Class", 40));
+        bogies.add(new Bogie("Luxury", 80));
 
-        System.out.println("\nBefore Sorting:");
+        System.out.println("\nOriginal Bogies:");
         for (Bogie b : bogies) {
             b.display();
         }
 
-        // ---------- SORT USING COMPARATOR (BY CAPACITY) ----------
-        bogies.sort(Comparator.comparingInt(b -> b.capacity));
+        // ---------- STREAM FILTER ----------
+        List<Bogie> filtered = bogies.stream()
+                .filter(b -> b.capacity > 60)   // condition
+                .collect(Collectors.toList());
 
-        System.out.println("\nAfter Sorting (By Capacity Ascending):");
+        // ---------- DISPLAY FILTERED ----------
+        System.out.println("\nFiltered Bogies (Capacity > 60):");
+        for (Bogie b : filtered) {
+            b.display();
+        }
+
+        // ---------- VERIFY ORIGINAL LIST UNCHANGED ----------
+        System.out.println("\nOriginal List After Filtering (Unchanged):");
         for (Bogie b : bogies) {
             b.display();
         }
